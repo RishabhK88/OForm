@@ -1,0 +1,11 @@
+p.screen {
+    text-align: center;
+    color: #323232;
+    font-family: Poppins;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    width: 100%;
+  }

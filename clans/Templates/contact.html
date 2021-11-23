@@ -1,0 +1,116 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Orientation Registration</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+    <link rel="stylesheet" href={% static './master.css' %} />
+    <link rel="stylesheet" href={% static './style.css' %}>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="overlay">
+        <p class="screen">ORIENTATION</p>
+
+ 
+
+        <div class="intro">
+           {% if thank %}
+        <button class="myBtn">Your form has been successfully submitted. Thank you for registering!</button>
+        {% else %}
+          <button class="myBtn" onclick="fadeOut()">REGISTER</button>
+          {% endif %}
+        </div>
+      </div>
+
+      <section id="form-container">
+        <form method="post">{% csrf_token %}
+          <div class="group">
+            <label for="user" class="label">Name</label>
+            <input id="name" name='name' type="text" class="input" required />
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Roll Number</label>
+            <input id="admission" name='admission' type="text" class="input" required/>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Thapar ID</label>
+            <input type="email" class="form-control" id="email" name='email' required/>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Contact Number</label>
+            <input id="phone" name='phone' type="number" class="input" required/>
+          </div>
+          <div class="groupradio">
+            <label class="label">Gender</label><br><br>
+            <div class="radgr">
+              <div class="radgr1">
+            <input id="gender" type="radio" name="gender" value="Male">
+            <label for="gender">Male</label>
+            </div>
+
+            <div class="radgr2">
+            <input id="gender" type="radio" name="gender" value="Female">
+            <label for="gender">Female</label>
+            </div>
+            </div>
+          </div>
+          <div class="group">
+            <input type="submit" class="button" value="Submit"/>
+          </div>
+        </form>
+      </section>
+
+    <script>
+      function fadeOut() {
+        TweenMax.to(".myBtn", 1, {
+          y: -100,
+          opacity: 0,
+        });
+
+        TweenMax.to(".screen", 2, {
+          y: -400,
+          opacity: 0,
+          ease: Power2.easeInOut,
+          delay: 1.2,
+        });
+
+        TweenMax.from(".overlay", 2, {
+          ease: Power2.easeInOut,
+        });
+
+        TweenMax.to(".overlay", 2, {
+          delay: 1.8,
+          top: "-110%",
+          ease: Expo.easeInOut,
+        });
+
+        TweenMax.to(".overlay-2", 2, {
+          delay: 3,
+          top: "-110%",
+          ease: Expo.easeInOut,
+        });
+
+        TweenMax.from(".content", 2, {
+          delay: 3.2,
+          opacity: 0,
+          ease: Power2.easeInOut,
+        });
+
+        TweenMax.to(".content", 2, {
+          opacity: 1,
+          y: -100,
+          delay: 3.2,
+          ease: Power2.easeInOut,
+        });
+      }
+    </script>
+  </body>
+</html>
